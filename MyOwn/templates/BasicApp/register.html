@@ -1,0 +1,32 @@
+{% extends "BasicApp/base.html" %}
+{% block title_block %}
+
+{% if is_registered %}
+Registration Done!
+{% else %}
+Registration Page!
+{% endif %}
+
+{% endblock title_block %}
+
+{% block body_block %}
+<div class="jumbotron">
+
+    {% if is_registered %}
+    <h1>Thank you for Registering!</h1>
+    {% else %}
+    <h1>Welcome to the Registration Page!</h1>
+    <hr class="my-4">
+    <h2>Register Here</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{user.as_p}}
+        {{profile.as_p}}
+        <div class="form-group">
+            <input type="submit" class="form-control btn btn-primary" value="Register">
+        </div>
+    </form>
+    {%endif%}
+</div>
+{% endblock body_block %}
